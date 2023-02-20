@@ -4,6 +4,7 @@ const {
   actualizarUsuarioBL,
   actualizarPasswordBL,
   buscarUsuarioDB,
+  borrarUsuarioBL,
 } = require("../bussinesLogic/usuariosBL");
 
 const { comparePassword } = require("../helpers/passwordUtils");
@@ -15,7 +16,7 @@ const listarUsuarios = async (req, res) => {
   const response = new GenericResponse();
   try {
     response.data = await listarUsuariosActuales();
-    response.message = "Ok";
+    response.message = CustomMessages.listado_ok;
     response.success = true;
     return res.json(response);
   } catch (e) {
@@ -30,10 +31,10 @@ const listarUsuarios = async (req, res) => {
 const guardarNuevoUsuario = async (req, res) => {
   const response = new GenericResponse();
   try {
-    const { nombre, username, email, password } = req.body;
-    const dtoUsuario = { nombre, username, email, password };
+    const { nombre, username, email, rol, password } = req.body;
+    const dtoUsuario = { nombre, username, email, rol, password };
     response.data = await agregarUsuarioNuevo(dtoUsuario);
-    response.message = "Ok";
+    response.message = CustomMessages.create_ok;
     response.success = true;
     return res.status(201).json(response);
   } catch (e) {
@@ -48,9 +49,26 @@ const guardarNuevoUsuario = async (req, res) => {
 const actualizarUsuarioC = async (req, res) => {
   const response = new GenericResponse();
   try {
-    const { id, nombre, email } = req.body;
-    const resultado = await actualizarUsuarioBL(id, nombre, email);
-    response.message = "Usuario actualizado correctamente";
+    const { id, nombre, email, rol } = req.body;
+    const resultado = await actualizarUsuarioBL(id, nombre, email, rol);
+    response.message = CustomMessages.update_ok;
+    response.data = resultado;
+    return res.json(response);
+  } catch (e) {
+    console.log(e);
+    response.success = false;
+    response.message = CustomMessages.error_500;
+    response.data = [];
+    return res.status(500).json(response);
+  }
+};
+
+const borrarUsuarioC = async (req, res) => {
+  const response = new GenericResponse();
+  try {
+    const id = req.body;
+    const resultado = await borrarUsuarioBL(id);
+    response.message = CustomMessages.delete_ok;
     response.data = resultado;
     return res.json(response);
   } catch (e) {
@@ -67,7 +85,7 @@ const actualizaPassword = async (req, res) => {
   try {
     const { id, password } = req.body;
     const resultado = await actualizarPasswordBL(id, password);
-    response.message = "Password actualizado correctamente";
+    response.message = CustomMessages.update_pass_ok;
     response.data = resultado;
     return res.json(response);
   } catch (e) {
@@ -116,6 +134,7 @@ module.exports = {
   listarUsuarios,
   guardarNuevoUsuario,
   actualizarUsuarioC,
+  borrarUsuarioC,
   actualizaPassword,
   login,
 };

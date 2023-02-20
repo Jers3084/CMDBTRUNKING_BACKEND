@@ -6,6 +6,7 @@ const listarUsuarios = async () => {
     nombre: true,
     email: true,
     username: true,
+    rol: true,
   });
 };
 
@@ -21,10 +22,10 @@ const guardarUsuarioRepository = async (model) => {
   return resultado;
 };
 
-const actualizarUsuarioRep = async (id, nombre, email) => {
+const actualizarUsuarioRep = async (id, nombre, email, rol) => {
   return await Usuario.findByIdAndUpdate(
     { _id: id },
-    { nombre: nombre, email: email },
+    { nombre: nombre, email: email, rol: rol },
     { new: true }
   );
 };
@@ -38,7 +39,7 @@ const actualizarPasswordRep = async (id, password) => {
 };
 
 const eliminarUsuario = async (id) => {
-  return await ServiceModel.deleteOne({ _id: id });
+  return await Usuario.deleteOne({ _id: id });
 };
 
 module.exports = {
