@@ -66,8 +66,8 @@ const actualizar = async (req, res) => {
 const borrar = async (req, res) => {
   const response = new GenericResponse();
   try {
-    const { serie } = req.body;
-    response.data = await borrarServicio(serie);
+    const id = req.body;
+    response.data = await borrarServicio(id);
     response.message = "Ok";
     return res.json(response);
   } catch (error) {

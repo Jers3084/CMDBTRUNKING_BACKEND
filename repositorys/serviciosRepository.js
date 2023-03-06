@@ -9,50 +9,52 @@ const NuevoServicio = async (model) => {
   return await addProduct.save();
 };
 
-const actualizarServicio = async (serie) => {
+const actualizarServicio = async (body) => {
+  console.log(body);
   return await ServiceModel.updateOne(
-    { serie: serie },
+    { _id: body._id },
     {
-      serie,
-      marca,
-      modelo,
-      submodelo,
-      tecnologia,
-      tiporadio,
-      identificador,
-      cobertura,
-      callgroup,
-      callpriv,
-      acctel,
-      callemerg,
-      zonausuario,
-      nombre,
-      ficha,
-      nivel,
-      regimen,
-      telefono,
-      email,
-      organismo,
-      subdireccion,
-      clvsubdireccion,
-      gerencia,
-      clvgerencia,
-      suptcia,
-      clvsuptcia,
-      depto,
-      clvdepto,
-      centrotrab,
-      clvct,
-      zonadmon,
-      ctadmon,
-      clvctadmon,
-      observaciones,
-    }
+      serie: body.serie,
+      marca: body.marca,
+      modelo: body.modelo,
+      submodelo: body.submodelo,
+      tecnologia: body.tecnologia,
+      tiporadio: body.tiporadio,
+      identificador: body.identificador,
+      cobertura: body.cobertura,
+      callgroup: body.callgroup,
+      callpriv: body.callpriv,
+      acctel: body.acctel,
+      callemerg: body.callemerg,
+      zonausuario: body.zonausuario,
+      nombre: body.nombre,
+      ficha: body.ficha,
+      nivel: body.nivel,
+      regimen: body.regimen,
+      telefono: body.telefono,
+      email: body.email,
+      organismo: body.organismo,
+      subdireccion: body.subdireccion,
+      clvsubdireccion: body.clvsubdireccion,
+      gerencia: body.gerencia,
+      clvgerencia: body.clvgerencia,
+      suptcia: body.suptcia,
+      clvsuptcia: body.clvsuptcia,
+      depto: body.depto,
+      clvdepto: body.clvdepto,
+      centrotrab: body.centrotrab,
+      clvct: body.clvct,
+      zonadmon: body.zonadmon,
+      ctadmon: body.ctadmon,
+      clvctadmon: body.clvctadmon,
+      observaciones: body.observaciones,
+    },
+    { new: true }
   );
 };
 
-const eliminarServicio = async (serie) => {
-  return await ServiceModel.findOneAndRemove({ serie: serie });
+const eliminarServicio = async (id) => {
+  return await ServiceModel.findOneAndRemove({ id: id });
 };
 
 module.exports = {

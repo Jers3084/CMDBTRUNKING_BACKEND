@@ -41,16 +41,7 @@ exports.createServiceValidator = [
     .withMessage("El campo nivel es requerido")
     .isNumeric()
     .withMessage("El campo nivel es de tipo Numerico"),
-  check("telefono")
-    .notEmpty()
-    .withMessage("El campo telefono es requerido")
-    .isString()
-    .withMessage("El campo telefono es de tipo String"),
-  check("email")
-    .notEmpty()
-    .withMessage("El campo email es requerido")
-    .isEmail()
-    .withMessage("El campo email es de tipo Email"),
+
   check("subdireccion")
     .notEmpty()
     .withMessage("El campo subdireccion es requerido")
@@ -61,16 +52,7 @@ exports.createServiceValidator = [
     .withMessage("El campo gerencia es requerido")
     .isString()
     .withMessage("El campo gerencia es de tipo String"),
-  check("suptcia")
-    .notEmpty()
-    .withMessage("El campo suptcia es requerido")
-    .isString()
-    .withMessage("El campo suptcia es de tipo String"),
-  check("clvsuptcia")
-    .notEmpty()
-    .withMessage("El campo clvsuptcia es requerido")
-    .isNumeric()
-    .withMessage("El campo clvsuptcia es de tipo Numerico"),
+
   check("depto")
     .notEmpty()
     .withMessage("El campo depto es requerido")

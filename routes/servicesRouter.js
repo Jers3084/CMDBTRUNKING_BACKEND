@@ -13,7 +13,12 @@ const router = Router();
 
 router.get("/", obtener);
 router.post("/", validator.createServiceValidator, guardar);
-router.post("/actualizar", validator.createServiceValidator, actualizar);
-router.post("/borrar", borrar);
+router.post(
+  "/actualizar",
+  validateToken,
+  validator.createServiceValidator,
+  actualizar
+);
+router.post("/borrar", validateToken, borrar);
 
 module.exports = router;
