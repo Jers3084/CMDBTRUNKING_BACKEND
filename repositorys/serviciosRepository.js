@@ -10,7 +10,6 @@ const NuevoServicio = async (model) => {
 };
 
 const actualizarServicio = async (body) => {
-  console.log(body);
   return await ServiceModel.updateOne(
     { _id: body._id },
     {
