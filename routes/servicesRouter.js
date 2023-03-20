@@ -1,6 +1,10 @@
 const { Router } = require("express");
 const {
   obtener,
+  obtenerdetalleid,
+  obtenerdetallezona,
+  obtenerdetalleficha,
+  obtenerdetalleserie,
   guardar,
   actualizar,
   borrar,
@@ -12,6 +16,10 @@ const validator = require("../validators/serviceValidator");
 const router = Router();
 
 router.get("/", obtener);
+router.get("/id/:valor1", obtenerdetalleid);
+router.get("/zona/:valor2", obtenerdetallezona);
+router.get("/ficha/:valor3", obtenerdetalleficha);
+router.get("/serie/:valor4", obtenerdetalleserie);
 router.post("/", validator.createServiceValidator, guardar);
 router.post(
   "/actualizar",

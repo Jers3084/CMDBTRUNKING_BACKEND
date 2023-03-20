@@ -4,6 +4,22 @@ const ListarServicios = async () => {
   return await ServiceModel.find();
 };
 
+const Listarcondetalleid = async (identificador) => {
+  return await ServiceModel.find(identificador);
+};
+
+const Listarcondetallezona = async (zona) => {
+  return await ServiceModel.find(zona);
+};
+
+const Listarcondetalleficha = async (ficha) => {
+  return await ServiceModel.find(ficha);
+};
+
+const Listarcondetalleserie = async (serie) => {
+  return await ServiceModel.find(serie);
+};
+
 const NuevoServicio = async (model) => {
   const addProduct = new ServiceModel(model);
   return await addProduct.save();
@@ -58,6 +74,10 @@ const eliminarServicio = async (id) => {
 
 module.exports = {
   ListarServicios,
+  Listarcondetalleid,
+  Listarcondetallezona,
+  Listarcondetalleficha,
+  Listarcondetalleserie,
   NuevoServicio,
   actualizarServicio,
   eliminarServicio,

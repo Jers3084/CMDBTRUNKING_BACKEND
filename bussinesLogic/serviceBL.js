@@ -1,5 +1,9 @@
 const {
   ListarServicios,
+  Listarcondetalleid,
+  Listarcondetallezona,
+  Listarcondetalleficha,
+  Listarcondetalleserie,
   NuevoServicio,
   actualizarServicio,
   eliminarServicio,
@@ -8,6 +12,22 @@ const {
 
 const obtenerServicios = async () => {
   return await ListarServicios();
+};
+
+const obtenercondetalleid = async (objeto) => {
+  return await Listarcondetalleid(objeto);
+};
+
+const obtenercondetallezona = async (objeto) => {
+  return await Listarcondetallezona(objeto);
+};
+
+const obtenercondetalleficha = async (objeto) => {
+  return await Listarcondetalleficha(objeto);
+};
+
+const obtenercondetalleserie = async (objeto) => {
+  return await Listarcondetalleserie(objeto);
 };
 
 const crearServicio = async (servicio) => {
@@ -24,6 +44,10 @@ const borrarServicio = async (servicio) => {
 
 module.exports = {
   obtenerServicios,
+  obtenercondetalleid,
+  obtenercondetallezona,
+  obtenercondetalleficha,
+  obtenercondetalleserie,
   crearServicio,
   modificarServicio,
   borrarServicio,

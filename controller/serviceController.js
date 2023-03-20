@@ -1,5 +1,9 @@
 const {
   obtenerServicios,
+  obtenercondetalleid,
+  obtenercondetallezona,
+  obtenercondetalleficha,
+  obtenercondetalleserie,
   crearServicio,
   modificarServicio,
   borrarServicio,
@@ -13,6 +17,70 @@ const obtener = async (req, res) => {
   const response = new GenericResponse();
   try {
     response.data = await obtenerServicios();
+    response.message = "Ok";
+    return res.json(response);
+  } catch (error) {
+    console.log(error);
+    response.message = CustomMessages.error_500;
+    response.success = false;
+    return res.status(500).json(response);
+  }
+};
+
+const obtenerdetalleid = async (req, res) => {
+  const response = new GenericResponse();
+  try {
+    const identificador = req.params.valor1;
+    const objbuscar = { identificador };
+    response.data = await obtenercondetalleid(objbuscar);
+    response.message = "Ok";
+    return res.json(response);
+  } catch (error) {
+    console.log(error);
+    response.message = CustomMessages.error_500;
+    response.success = false;
+    return res.status(500).json(response);
+  }
+};
+
+const obtenerdetallezona = async (req, res) => {
+  const response = new GenericResponse();
+  try {
+    const zonausuario = req.params.valor2;
+    const obj = { zonausuario };
+    response.data = await obtenercondetallezona(obj);
+    response.message = "Ok";
+    return res.json(response);
+  } catch (error) {
+    console.log(error);
+    response.message = CustomMessages.error_500;
+    response.success = false;
+    return res.status(500).json(response);
+  }
+};
+
+const obtenerdetalleficha = async (req, res) => {
+  const response = new GenericResponse();
+  try {
+    const ficha = req.params.valor3;
+    const objficha = { ficha };
+    response.data = await obtenercondetalleficha(objficha);
+    response.message = "Ok";
+    return res.json(response);
+  } catch (error) {
+    console.log(error);
+    response.message = CustomMessages.error_500;
+    response.success = false;
+    return res.status(500).json(response);
+  }
+};
+
+const obtenerdetalleserie = async (req, res) => {
+  const response = new GenericResponse();
+  try {
+    const serie = req.params.valor4;
+    const objserie = { serie };
+    response.data = await obtenercondetalleserie(objserie);
     response.message = "Ok";
     return res.json(response);
   } catch (error) {
@@ -78,4 +146,13 @@ const borrar = async (req, res) => {
   }
 };
 
-module.exports = { obtener, guardar, actualizar, borrar };
+module.exports = {
+  obtener,
+  obtenerdetalleid,
+  obtenerdetallezona,
+  obtenerdetalleficha,
+  obtenerdetalleserie,
+  guardar,
+  actualizar,
+  borrar,
+};
